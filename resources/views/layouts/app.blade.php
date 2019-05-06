@@ -19,6 +19,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link @if(url()->current()==route('HomePage')) active @endif" href="{{url('/')}}"><i class="fa fa-home"></i> Anasayfa</a>
+                    </li>
                     <li class="nav-item @if(url()->current()==route('GetWords') && !request()->has('learned')) active @endif">
                       <a class="nav-link" href="{{url('words')}}"><i class="fa fa-database"></i> Kelimeler <span class="badge badge-secondary">{{$wordCount}}</span></a>
                     </li>

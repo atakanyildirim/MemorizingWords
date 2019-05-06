@@ -4,7 +4,7 @@
 <main>
     <div class="container">
       <div class="row justify-content-md-center">
-        <div class="col-md-10 mt-5">
+        <div class="col-md-12 mt-5">
           @if(session('message'))
             <div class="alert alert-{{session('color')}} border-dark alert-dismissible fade show">
               <h4 class="my-title">{{session('title')}}</h4>

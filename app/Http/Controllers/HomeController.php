@@ -10,7 +10,7 @@ class HomeController extends Controller
     /**
      * Anasayfa görünümü yükler.
      *
-     * @return View
+     * @return view
      */
     public function index()
     {

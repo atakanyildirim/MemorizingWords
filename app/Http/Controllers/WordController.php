@@ -18,19 +18,19 @@ class WordController extends Controller
     {
         if($request->has('learned') && $request->input('learned') == 1)
         {
-            $words = LearnWord::where('completed',1)->get();
+            $words = LearnWord::where('completed',1)->paginate(10);
             $heading = "Öğrendiklerim";
         }
         else
         {
-            $words = Word::orderBy('id','desc')->paginate(12);
+            $words = Word::orderBy('id','desc')->paginate(10);
             $heading = "Kelimeler";
         }
         
         $data = ['words' => $words, 'heading' => $heading];
         return view('words',$data);
-
     }
+    
    /**
      * Kullanıcıdan alınan kelime bilgilerinin doğrulaması yapıldıktan sonra veritabanına ekler.
      *

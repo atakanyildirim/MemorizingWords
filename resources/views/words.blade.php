@@ -4,7 +4,7 @@
 <main>
     <div class="container">
       <div class="row justify-content-md-center">
-        <div class="col-md-10 mt-5">
+        <div class="col-md-12 mt-5">
           @if(session('message'))
             <div class="alert alert-{{session('color')}} border-dark alert-dismissible fade show">
               <h4 class="my-title">{{session('title')}}</h4>
@@ -37,13 +37,14 @@
                 </a>
               </div>
             </div>
-              <table class="table table-striped">
+              <table class="table table-striped table-hover">
                   <thead>
                     <tr>
                       <th>İngilizce</th>
                       <th>Türkçe</th>
                       <th>Nitelik</th>
                       <th>Cümle</th>
+                      @if(!request()->has('learned'))<th class="text-right">Öğrenme Durumu</th>@endif
                     </tr>
                   </thead>
                   <tbody>
@@ -54,14 +55,16 @@
                       @endphp
                     @endif
                       <tr>
-                        <td>@if(request()->has('learned') && request()->input('learned') == 1)<i class="fa fa-check text-success"></i>@endif{{$word->eng}}</td>
+                        <td>@if(request()->has('learned') && request()->input('learned') == 1)<i class="fa fa-check text-success"></i> @endif{{$word->eng}}</td>
                         <td>{{$word->tr}}</td>
                         <td>{{$word->attribute}}</td>
                         <td>{{$word->sentence}}</td>
+                        @if(!request()->has('learned'))<td align="right"><a href="{{url('addlearnlist')}}"><button @if($word->is_learned == 1 && !request()->has('learned')) disabled @endif class="btn btn-warning"><i class="fa fa-play"></i> Öğrenmeye Başla</button></a></td>@endif
                       </tr>
                     @endforeach
                   </tbody>
               </table>
+              {{ $words->appends(request()->except('page'))->links() }}
         </div>
       </div> 
     </div>
