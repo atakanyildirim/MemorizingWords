@@ -22,17 +22,17 @@
                     <li class="nav-item">
                         <a class="nav-link @if(url()->current()==route('HomePage')) active @endif" href="{{url('/')}}"><i class="fa fa-home"></i> Anasayfa</a>
                     </li>
-                    <li class="nav-item @if(url()->current()==route('GetWords') && !request()->has('learned')) active @endif">
+                    <li class="nav-item @if(url()->current()==route('Words') && !request()->has('learned')) active @endif">
                       <a class="nav-link" href="{{url('words')}}"><i class="fa fa-database"></i> Kelimeler <span class="badge badge-secondary">{{$wordCount}}</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link @if(url()->current()==route('GetWords') && request()->has('learned') && request()->input('learned') == 1) active @endif" href="{{url('words?learned=1')}}"><i class="fa fa-check-circle"></i> Öğrendiklerim <span class="badge badge-success">{{$learnedWordCount}}</span></a>
+                      <a class="nav-link @if(url()->current()==route('LearningList')) active @endif" href="{{url('learning-list')}}"><i class="fa fa-th-list"></i> Öğrenme Listesi <span class="badge badge-success">{{$learningListCount}}</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url('learn')}}"><i class="fa fa-play-circle"></i> Öğren</a>
+                        <a class="nav-link @if(url()->current()==route('Learn')) active @endif" href="{{url('learn')}}"><i class="fa fa-play-circle"></i> Öğren</a>
                     </li>
                     <li class="nav-item" data-toggle="tooltip" data-placement="bottom" title="Yakında kullanıcı profili eklenecektir...">
-                     <a class="nav-link text-light font-weight-bold" href=""><i class="fa fa-user"></i> {{$user->userName ." " . $user->userSurname}}</a>
+                     <a class="nav-link" href=""><i class="fa fa-user"></i> {{$user->userName ." " . $user->userSurname}}</a>
                     </li>
                   </ul>
                   <form class="form-inline my-2 my-lg-0">

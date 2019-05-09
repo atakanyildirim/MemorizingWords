@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Kelimelerim | Kelime Ezberleme')
+@section('title', 'Öğrenme Listesi | Kelime Ezberleme')
 @section('content')
 <main>
     <div class="container">
@@ -29,7 +29,7 @@
             @endif
             <div class="row">
               <div class="col-6">
-                <h1 class="my-title">Kelimelerim</h1>
+                <h1 class="my-title">Öğrenme Listesi</h1>
               </div>
               <div class="col-6 text-right">
                 <a href="{{url('/')}}" class="text-decoration-none">
@@ -42,27 +42,28 @@
                     <tr>
                       <th>İngilizce</th>
                       <th>Türkçe</th>
-                      <th>Nitelik</th>
-                      <th>Cümle</th>
-                      <th class="text-right">Öğrenme Durumu</th>
+                      <th>Öğrenme Aşaması (1-4)</th>
+                      <th>Durum</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ($words as $word)
+                    @foreach ($learningList as $list)
+                    @php
+                        $word = \App\Model\Word::find($list->word_id);
+                    @endphp
                       <tr>
                         <td>@if($word->learned == 1)<i class="fa fa-check-circle text-success" title="Öğrenildi"></i>@endif {{$word->eng}}</td>
                         <td>{{$word->tr}}</td>
-                        <td>{{$word->attribute}}</td>
-                        <td>{{$word->sentence}}</td>
-                        <td align="right">@if($word->learned!=1)<a @if($word->learning_list == 0) href="{{url('add-learning-list')."/".$word->id}}" @endif><button @if($word->learning_list == 1) disabled @endif class="btn btn-warning"><i class="fa fa-play"></i> @if($word->learning_list == 0) Öğrenmeye Başla @endif</button></a>@endif</td>
+                        <td>@for($i = 0; $i < $list->stage; $i++)<i class="fa fa-star text-warning fa-2x"></i> @endfor</td>
+                        <td>@if($list->completed == 0) <span class="badge badge-dark">Devam Ediyor</span> @else <span class="badge badge-success">Tamamlandı</span> @endif</td>
                       </tr>
                     @endforeach
                   </tbody>
               </table>
-              @if(!count($words))
-                <div class="alert alert-warning">Henüz bir kelime eklenmedi.</div>
+              @if(!count($learningList))
+                <div class="alert alert-warning">Henüz öğrenme listesine bir kelime eklenmemiş.</div>
               @endif
-              {{ $words->appends(request()->except('page'))->links() }}
+              {{ $learningList->appends(request()->except('page'))->links() }}
         </div>
       </div> 
     </div>

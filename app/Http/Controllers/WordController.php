@@ -4,30 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\Word;
-use App\Model\LearnWord;
+use App\Model\LearningList;
 
 class WordController extends Controller
 {
     /**
      * Veritabanından eklenen kelimeleri alır ve görünüme aktarır.
      *
-     * @param Request $request
      * @return view
      */
-    public function getWords(Request $request)
+    public function Words()
     {
-        if($request->has('learned') && $request->input('learned') == 1)
-        {
-            $words = LearnWord::where('completed',1)->paginate(10);
-            $heading = "Öğrendiklerim";
-        }
-        else
-        {
-            $words = Word::orderBy('id','desc')->paginate(10);
-            $heading = "Kelimeler";
-        }
-        
-        $data = ['words' => $words, 'heading' => $heading];
+        $words = Word::orderBy('id','desc')->paginate(10);
+        $data = ['words' => $words];
         return view('words',$data);
     }
     
@@ -37,7 +26,7 @@ class WordController extends Controller
      * @param Request $request
      * @return Redirect
      */
-    public function addWord(Request $request)
+    public function AddWord(Request $request)
     {
         // Form elemanlarının var olup olmama kontrolü.
         $messages = [
@@ -64,16 +53,28 @@ class WordController extends Controller
         
         // Tüm koşullar sağlanırsa kelimeyi veritabanına ekler.
         $newWord = new Word;
-        $newWord->eng = $engWord;
-        $newWord->tr = $trWord;
-        $newWord->attribute = $wordAttribute;
+        $newWord->eng = strtolower($engWord);
+        $newWord->tr = strtolower($trWord);
+        $newWord->attribute = strtolower($wordAttribute);
         $newWord->sentence = $sentence;
+        if($request->has('learn'))
+            $newWord->learning_list = 1;
+            
+        $isAdded = $newWord->save();
         
         if($request->has('learn'))
-        $newWord->is_learned = 1;
-
-        if($newWord->save())
+        {
+            $learningList = new LearningList;
+            $learningList->stage = 1;
+            $learningList->word_id = $newWord->id;
+            $learningList->completed = 0;
+            $learningList->save();
+        }
+        
+        if($isAdded)
+        {
             return redirect(url('/'))->with('title','Başarılı')->with('color','success')->with('message','Kelime başarıyla eklendi.');
+        }
         else
             return redirect(url('/'))->with('title','Hata var :(')->with('color','danger')->with('message','Bir hata oluştu')->withInput();
     }

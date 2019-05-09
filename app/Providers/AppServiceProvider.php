@@ -5,7 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Model\Word;
-use App\Model\LearnWord;
+use App\Model\LearningList;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -30,8 +30,8 @@ class AppServiceProvider extends ServiceProvider
         $userData = json_decode($userInformation);
 
         $wordCount = Word::count();
-        $learnedWordCount = LearnWord::where('completed',1)->count();
+        $learningListCount = LearningList::where('completed',0)->count();
 
-        View::share(['wordCount' => $wordCount, 'learnedWordCount' => $learnedWordCount, 'user' => $userData]);
+        View::share(['wordCount' => $wordCount, 'learningListCount' => $learningListCount, 'user' => $userData]);
     }
 }

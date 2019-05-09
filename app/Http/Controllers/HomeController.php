@@ -12,7 +12,7 @@ class HomeController extends Controller
      *
      * @return view
      */
-    public function index()
+    public function Index()
     {
         return view('home');
     }

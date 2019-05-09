@@ -44,8 +44,8 @@
                       <label for="email">Mail Adresiniz</label>
                       <input type="email" name="email" class="form-control form-control-lg" id="email" placeholder="Email">
                   </div>
-                  <div class="checkbox">
-                        <label style="font-size: 1.5em">
+                  <div class="checkbox mb-2">
+                        <label style="font-size: 1.2em">
                             <input type="checkbox" value="" checked>
                             <span class="cr"><i class="cr-icon fa fa-check"></i></span>
                             Öğrenme aşamasındaki kelimenin sınama zamanı geldiğinde mail ile uyar.

@@ -12,11 +12,14 @@
 */
 
 // Anasayfa ilgilendiren rotalar
-Route::get('/', 'HomeController@index')->name('HomePage');
+Route::get('/', 'HomeController@Index')->name('HomePage');
 
 // Kelime ile ilgili rotalar
-Route::get('words','WordController@getWords')->name('GetWords');
-Route::post('words', 'WordController@addWord')->name('AddWord');
+Route::get('words','WordController@Words')->name('Words');
+Route::post('words', 'WordController@AddWord')->name('AddWord');
 
 // Öğrenme sayfasını ilgilendiren rotalar.
-Route::get('learn','LearnController@start')->name('Learn');
+Route::get('learning-list','LearningListController@Index')->name('LearningList');
+Route::get('learn','LearnController@StartLearning')->name('Learn');
+Route::post('learn','LearnController@CheckTesting')->name('CheckTesting');
+Route::get('add-learning-list/{id}','LearningListController@AddLearningList')->name('AddLearningList');
