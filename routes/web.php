@@ -23,3 +23,6 @@ Route::get('learning-list','LearningListController@Index')->name('LearningList')
 Route::get('learn','LearnController@StartLearning')->name('Learn');
 Route::post('learn','LearnController@CheckTesting')->name('CheckTesting');
 Route::get('add-learning-list/{id}','LearningListController@AddLearningList')->name('AddLearningList');
+
+// İstatistik sayfasıyla ilgili rotalar
+Route::get('/statistics', 'StatisticsController@Index')->name('Statistics');

@@ -29,16 +29,15 @@
                       <a class="nav-link @if(url()->current()==route('LearningList')) active @endif" href="{{url('learning-list')}}"><i class="fa fa-th-list"></i> Öğrenme Listesi <span class="badge badge-success">{{$learningListCount}}</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link @if(url()->current()==route('Learn')) active @endif" href="{{url('learn')}}"><i class="fa fa-play-circle"></i> Öğren</a>
+                      <a class="nav-link @if(url()->current()==route('Learn')) active @endif" href="{{url('learn')}}"><i class="fa fa-play-circle"></i> Kelime Testi</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link @if(url()->current()==route('Statistics')) active @endif" href="{{url('statistics')}}"><i class="fa fa-bar-chart"></i> İstatistik</a>
                     </li>
                     <li class="nav-item" data-toggle="tooltip" data-placement="bottom" title="Yakında kullanıcı profili eklenecektir...">
                      <a class="nav-link" href=""><i class="fa fa-user"></i> {{$user->userName ." " . $user->userSurname}}</a>
                     </li>
                   </ul>
-                  <form class="form-inline my-2 my-lg-0">
-                      <input class="form-control mr-sm-2" type="search" placeholder="Kelime ara" aria-label="Search">
-                      <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Ara</button>
-                  </form>
                 </div>
             </div>
       </nav>
@@ -49,6 +48,8 @@
     <script src="{{asset('assets/js/jquery-3.4.1.min.js')}}"></script>
     <script src="{{asset('assets/js/popper.js')}}"></script>
     <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('assets/js/chart.js')}}"></script>
     <script src="{{asset('assets/js/kelime.js')}}"></script>
+    @yield('javascript')
   </body>
 </html>

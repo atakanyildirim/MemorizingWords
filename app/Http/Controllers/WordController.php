@@ -60,7 +60,7 @@ class WordController extends Controller
         if($request->has('learn'))
             $newWord->learning_list = 1;
             
-        $isAdded = $newWord->save();
+        $isSaved = $newWord->save();
         
         if($request->has('learn'))
         {
@@ -71,7 +71,7 @@ class WordController extends Controller
             $learningList->save();
         }
         
-        if($isAdded)
+        if($isSaved)
         {
             return redirect(url('/'))->with('title','Başarılı')->with('color','success')->with('message','Kelime başarıyla eklendi.');
         }
