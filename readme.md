@@ -1,4 +1,6 @@
-<img align="left" src="https://github.com/atakanyildirim/YazilimYapimi/blob/master/public/assets/images/favicion.png?raw=true" width="32"> 
+<p align="center">
+<img align="center" src="https://github.com/atakanyildirim/YazilimYapimi/blob/master/public/assets/images/logo-dark.png?raw=true" width="128"> 
+</p>
 
 ## Kelime Ezberleme Programı Hakkında
 
