@@ -11,18 +11,20 @@
 |
 */
 
-// Anasayfa ilgilendiren rotalar
-Route::get('/', 'HomeController@Index')->name('HomePage');
+Route::middleware('learning')->group(function () {
+    // Anasayfa ilgilendiren rotalar
+    Route::get('/', 'HomeController@Index')->name('HomePage');
 
-// Kelime ile ilgili rotalar
-Route::get('words','WordController@Words')->name('Words');
-Route::post('words', 'WordController@AddWord')->name('AddWord');
+    // Kelime ile ilgili rotalar
+    Route::get('words','WordController@Words')->name('Words');
+    Route::post('words', 'WordController@AddWord')->name('AddWord');
+
+    // İstatistik sayfasıyla ilgili rotalar
+    Route::get('/statistics', 'StatisticsController@Index')->name('Statistics');
+    Route::get('learning-list','LearningListController@Index')->name('LearningList');
+});
 
 // Öğrenme sayfasını ilgilendiren rotalar.
-Route::get('learning-list','LearningListController@Index')->name('LearningList');
 Route::get('learn','LearnController@StartLearning')->name('Learn');
 Route::post('learn','LearnController@CheckTesting')->name('CheckTesting');
 Route::get('add-learning-list/{id}','LearningListController@AddLearningList')->name('AddLearningList');
-
-// İstatistik sayfasıyla ilgili rotalar
-Route::get('/statistics', 'StatisticsController@Index')->name('Statistics');

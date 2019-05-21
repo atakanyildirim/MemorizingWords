@@ -54,7 +54,7 @@
                       <tr>
                         <td>@if($word->learned == 1)<i class="fa fa-check-circle text-success" title="Öğrenildi"></i>@endif {{$word->eng}}</td>
                         <td>{{$word->tr}}</td>
-                        <td>@for($i = 0; $i < $list->stage; $i++)<i class="fa fa-star text-warning fa-2x"></i> @endfor</td>
+                        <td>@for($i = 0; $i < $list->stage -1; $i++)<i class="fa fa-star text-warning fa-2x"></i> @endfor @if($list->stage == 4 && $word->learned == 1)<i class="fa fa-star text-warning fa-2x"></i>@endif</td>
                         <td>@if($list->completed == 0) <span class="badge badge-dark">Devam Ediyor</span> @else <span class="badge badge-success">Tamamlandı</span> @endif</td>
                       </tr>
                     @endforeach

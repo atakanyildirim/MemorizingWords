@@ -29,13 +29,13 @@
                       <a class="nav-link @if(url()->current()==route('LearningList')) active @endif" href="{{url('learning-list')}}"><i class="fa fa-th-list"></i> Öğrenme Listesi <span class="badge badge-success">{{$learningListCount}}</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link @if(url()->current()==route('Learn')) active @endif" href="{{url('learn')}}"><i class="fa fa-play-circle"></i> Kelime Testi</a>
-                    </li>
-                    <li class="nav-item">
                       <a class="nav-link @if(url()->current()==route('Statistics')) active @endif" href="{{url('statistics')}}"><i class="fa fa-bar-chart"></i> İstatistik</a>
                     </li>
                     <li class="nav-item" data-toggle="tooltip" data-placement="bottom" title="Yakında kullanıcı profili eklenecektir...">
                      <a class="nav-link" href=""><i class="fa fa-user"></i> {{$user->userName ." " . $user->userSurname}}</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="btn btn-success @if(url()->current()==route('Learn')) active @endif" href="{{url('learn')}}"><i class="fa fa-play-circle"></i> Kelime Testi</a>
                     </li>
                   </ul>
                 </div>

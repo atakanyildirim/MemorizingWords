@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Model\Word;
 use App\Model\LearningList;
+use App\Http\Controllers\LearnController;
 
 class AppServiceProvider extends ServiceProvider
 {

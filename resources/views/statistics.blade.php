@@ -88,7 +88,6 @@
           ticks: {
             beginAtZero: true,
             stepSize:1,
-            label: true
           }
         }]
       }
